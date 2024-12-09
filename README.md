@@ -1,0 +1,1 @@
+# Notes and Projects for Udemy Course: [Master Svelte 5 & SvelteKit - Build & Deploy Real-World Apps](https://www.udemy.com/course/practical-sveltekit-guide-build-and-deploy-real-world-apps/)
