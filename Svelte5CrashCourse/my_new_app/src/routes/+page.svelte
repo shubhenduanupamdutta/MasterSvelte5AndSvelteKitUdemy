@@ -1,7 +1,7 @@
 <script lang="ts">
-    function onClick() {
-        console.log("Clicked from inside the script tag");
-    }
+	function onClick() {
+		console.log('Clicked from inside the script tag');
+	}
 </script>
 
 <h1>Welcome to SvelteKit</h1>

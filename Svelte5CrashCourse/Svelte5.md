@@ -48,3 +48,5 @@ It is a mix of HTML, CSS, and JavaScript in a single file.
 - `<script>`: JavaScript code at the top
 - HTML code in the middle
 - `<style>`: CSS code at the bottom
+
+**Anything in the `<script>` and `<style>` tags will be scoped to the component. That is, JS and Style will only apply to the html in the page.**
