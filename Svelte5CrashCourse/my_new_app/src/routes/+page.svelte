@@ -27,6 +27,12 @@
 	}
 
 	let userInfo = $derived.by(() => calculateUserInformation(number));
+
+	// Script for UserEmail snippet
+
+	let email = $state('random_name@gmail.co.in');
+
+	let data = $props();
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -61,10 +67,19 @@
 <br />
 <hr />
 
+{#snippet userEmail(exampleString: string)}
+	<h2>Your Email Address</h2>
+	<input type="email" bind:value={email} />
+
+	<p>Your email address is: {email}</p>
+{/snippet}
+
 <UserInput userName={'Shubhendu'}>
-    <h3>This is the stuff passed as children.</h3>
-    <h4> This is some extra stuff</h4>
+	<h3>This is the stuff passed as children.</h3>
+	<h4>This is some extra stuff</h4>
 </UserInput>
+
+{@render userEmail('Example 1')}
 
 <style>
 	h1 {

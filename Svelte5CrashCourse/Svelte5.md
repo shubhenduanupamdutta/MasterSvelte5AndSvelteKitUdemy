@@ -186,22 +186,43 @@ _Inside `+page` component_
 ```html
 <UserInput userName={"Shubhendu"} />
 ```
+
 _Then userName will be passed to the `UserInput` component. And if there are some other things inside the `<UserInput> tag, then they will be passed as children._
 
 _And children can be rendered with_
+
 ```js
 // typescript compatibility
-import type {Snippet} from "svelte";
+import type { Snippet } from "svelte";
 
 interface UserInputInterface {
-    children: Snippet;
-    userName: string;
+  children: Snippet;
+  userName: string;
 }
 
-let {userName, children, ...props}: UserInputInterface = $props();
+let { userName, children, ...props }: UserInputInterface = $props();
 ```
 
 ```html
-<input type="text" bind:value="{userName}" />
-{@render children()}
+<input type="text" bind:value="{userName}" /> {@render children()}
 ```
+
+---
+
+## Snippet
+
+---
+**Snippet is a type of svelte, it is nothing but a component. There can be multiple snippets in one file.**
+
+```html
+{#snippet userEmail()}
+	<h2>Your Email Address</h2>
+	<input type="email" bind:value={email} />
+	{@render children()}
+
+	<p>Your email address is: {email}</p>
+{/snippet}
+```
+_In snippet we don't get extra script and style tag, they will be defined globally._
+
+#### NOTE: For any kind of snippet we can only use one variable, either it is a primitive or an Object. We can't use multiple variables in a snippet.
