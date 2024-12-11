@@ -2,11 +2,29 @@
 	function onClick() {
 		console.log('Clicked from inside the script tag');
 	}
-	let numberOne = $state(0);
+	let number = $state(0);
 
 	function increment() {
-		numberOne++;
+		number++;
 	}
+
+	let userInformation = $derived(
+		number == 0
+			? "Hey, why don't you try clicking the button above?"
+			: `You've clicked the button ${number} times`
+	);
+
+	function calculateUserInformation(number: number) {
+		if (number === 0) {
+			return "Hey, why don't you try clicking on the button?";
+		}
+		if (number === 1) {
+			return "You've clicked once!";
+		}
+		return `You've clicked ${number} times!`;
+	}
+
+	let userInfo = $derived.by(() => calculateUserInformation(number));
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -14,10 +32,24 @@
 
 <button onclick={() => console.log('clicked')}>Click me</button>
 <button onclick={onClick}>Click me from inside the script tag</button>
-
+<br /><br />
 <button onclick={increment}>Increment the number.</button>
 
-<h1>{numberOne}</h1>
+<h1>{number}</h1>
+
+<h3>First Way (Using html)</h3>
+<p>
+	{number == 0
+		? "Hey, why don't you try clicking the button above?"
+		: `You've clicked the button ${number} times`}
+</p>
+
+<h3>Second Way (Using Js and derived rune)</h3>
+<p>{userInformation}</p>
+
+<h3>Third Way (Using Js and derived rune with a function)</h3>
+<p>{userInfo}</p>
+
 <p>Hello!</p>
 <div class="container">
 	<p>This is the left side</p>

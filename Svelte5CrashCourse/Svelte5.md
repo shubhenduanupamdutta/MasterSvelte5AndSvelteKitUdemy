@@ -56,14 +56,62 @@ It is a mix of HTML, CSS, and JavaScript in a single file.
 ## Reactivity in Svelte
 
 ---
+
 _Now let's say we want to change something on the page depending on user input. This is called reactivity or Reactive State._
 
 **In Svelte 5, you can use `state` rune to specify a reactive variable.**
 
 ```js
-let numberOne = $state(0);
+let number = $state(0);
 function onClick() {
-  numberOne++;
+  number++;
 }
 ```
-_Above code means, `numberOne` is initialized with 0 and it is reactive. That means whenever for any reason numberOne is changed, the page or at least parts where numberOne is used will be updated._
+
+_Above code means, `number` is initialized with 0 and it is reactive. That means whenever for any reason number is changed, the page or at least parts where number is used will be updated._
+
+### Showing different text based on some variables value
+
+#### Using html
+
+```html
+<p>
+  {number == 0 ? "Hey, why don't you try clicking on the button?" : `You've clicked ${number}
+  times!`}
+</p>
+```
+
+_Above code will show different text based on the value of `number`. if `number` is `0` then it will show a prompt, and if its not 0, it will show the number of clicks._
+
+#### Using JavaScript
+
+```js
+let userInformation = $derived(
+  number == 0 ? "Hey, why don't you try clicking on the button?" : `You've clicked ${number} times!`
+);
+```
+
+```html
+<p>{userInformation}</p>
+```
+
+_This will also do the same thing, and makes the userInformation derived from the number._
+
+**In above example, which is a very small one, it doesn't really matter which we choose. But suppose we have a very complex logic to derive the `userInformation` and it is used in multiple places in the page, then it is better to use the JavaScript way.**
+
+#### We can also have more complicated logic inside derived rune
+
+```js
+function calculateUserInformation(number: number) {
+  if (number === 0) {
+    return "Hey, why don't you try clicking on the button?";
+  }
+  if (number === 1) {
+    return "You've clicked once!";
+  }
+  return `You've clicked ${number} times!`;
+}
+
+let userInformation = $derived.by(() => calculateUserInformation(number));
+```
+### NOTE: We are going to use `state` and `derived` runes a lot in Svelte 5, so it is better to get familiar with them.
