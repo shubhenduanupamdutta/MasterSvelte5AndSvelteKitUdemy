@@ -148,4 +148,10 @@ $effect(() => {
 
 _The above code will log the user name to the console whenever the `userName` variable is updated. And if there are multiple state variables inside effect then each one will run effect. This effect will also run when the state variable is initialized._
 
-### 
+### `inspect` rune
+**We can track a state using `effect` rune, but as we know, it is a last resort, a better rune for this will be `inspect` rune.**
+
+```js
+$inspect(userName);
+```
+_Above will automatically track `userName` state and log it to the console whenever it is updated. This is very helpful in debugging._

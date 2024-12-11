@@ -35,6 +35,9 @@
 			console.log('I will send the name to the database, current user name is: ', userName);
 		}
 	});
+
+    // Inspect rune and debugging
+    $inspect(userName);
 </script>
 
 <h1>Welcome to SvelteKit</h1>
