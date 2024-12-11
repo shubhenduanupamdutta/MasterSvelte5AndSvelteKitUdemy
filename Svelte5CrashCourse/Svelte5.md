@@ -114,4 +114,38 @@ function calculateUserInformation(number: number) {
 
 let userInformation = $derived.by(() => calculateUserInformation(number));
 ```
+
 ### NOTE: We are going to use `state` and `derived` runes a lot in Svelte 5, so it is better to get familiar with them.
+
+### Reactivity with Input Fields
+
+```html
+<input type="text" bind:value="{name}" />
+```
+
+```js
+let name = $state("");
+```
+
+_Above code will create an input field and bind the value of the input field to the `name` variable. So whenever the user types something in the input field, the `name` variable will be updated._
+
+### `effect` rune
+
+_This is a sort of escape hatch and last resort for when you need to do something that is not possible with `state` and `derived` runes._
+
+_**So where to use `effect` rune?**_
+
+_We can use effect rune, when we want to create some external effect, when some state updates. For example, when we want to make an API call when some state updates._
+
+```js
+$effect(() => {
+  console.log("Effect hook is running");
+  if (userName) {
+    console.log("I will send the name to the database, current user name is: ", userName);
+  }
+});
+```
+
+_The above code will log the user name to the console whenever the `userName` variable is updated. And if there are multiple state variables inside effect then each one will run effect. This effect will also run when the state variable is initialized._
+
+### 

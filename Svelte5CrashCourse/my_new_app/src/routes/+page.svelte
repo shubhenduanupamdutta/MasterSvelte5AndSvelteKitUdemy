@@ -25,6 +25,16 @@
 	}
 
 	let userInfo = $derived.by(() => calculateUserInformation(number));
+
+	// Code for reactive state in input and effect hook
+	let userName = $state('');
+
+	$effect(() => {
+		console.log('Effect hook is running');
+		if (userName) {
+			console.log('I will send the name to the database, current user name is: ', userName);
+		}
+	});
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -55,6 +65,16 @@
 	<p>This is the left side</p>
 	<p>This is the right side</p>
 </div>
+
+<br />
+<hr />
+<h1>Reactive State in Input and Effect Hook</h1>
+<hr />
+
+<h2>Your Username</h2>
+<input type="text" bind:value={userName} />
+
+<p>Your username is <em>{userName}</em></p>
 
 <style>
 	h1 {
