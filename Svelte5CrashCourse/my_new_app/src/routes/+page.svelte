@@ -33,6 +33,11 @@
 	let email = $state('random_name@gmail.co.in');
 
 	let data = $props();
+
+	// Template Syntax demo
+	let isEditMode = $state(false);
+	let peopleWaiting = $state(['asldkfja134', 'lakdjf1341eq234']);
+	$inspect(peopleWaiting);
 </script>
 
 <h1>Welcome to SvelteKit</h1>
@@ -69,9 +74,11 @@
 
 {#snippet userEmail(exampleString: string)}
 	<h2>Your Email Address</h2>
-	<input type="email" bind:value={email} />
-
-	<p>Your email address is: {email}</p>
+	{#if isEditMode}
+		<input type="email" bind:value={email} />
+	{:else}
+		<p>Your email address is: {email}</p>
+	{/if}
 {/snippet}
 
 <UserInput userName={'Shubhendu'}>
@@ -80,6 +87,25 @@
 </UserInput>
 
 {@render userEmail('Example 1')}
+
+<br />
+<hr />
+<h1>Template Syntax Demo</h1>
+<hr />
+<button onclick={() => (isEditMode = !isEditMode)}>
+	{isEditMode ? 'Save Changes' : 'Edit Email'}
+</button>
+
+<h1>Waiting Queue</h1>
+{#snippet userId(id: string)}
+	<li>ID for person waiting {id}</li>
+{/snippet}
+
+{#each peopleWaiting as person}
+	{@render userId(person)}
+{/each}
+
+<button onclick={() => peopleWaiting.push(new Date().getTime().toString())}>I'm waiting</button>
 
 <style>
 	h1 {

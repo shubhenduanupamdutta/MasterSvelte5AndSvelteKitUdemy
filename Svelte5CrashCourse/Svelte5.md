@@ -226,3 +226,7 @@ let { userName, children, ...props }: UserInputInterface = $props();
 _In snippet we don't get extra script and style tag, they will be defined globally._
 
 #### NOTE: For any kind of snippet we can only use one variable, either it is a primitive or an Object. We can't use multiple variables in a snippet.
+
+## Template Language example
+```ts
+let isEditMode = $state(false);
