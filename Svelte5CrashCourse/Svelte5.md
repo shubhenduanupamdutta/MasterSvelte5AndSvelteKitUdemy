@@ -149,9 +149,59 @@ $effect(() => {
 _The above code will log the user name to the console whenever the `userName` variable is updated. And if there are multiple state variables inside effect then each one will run effect. This effect will also run when the state variable is initialized._
 
 ### `inspect` rune
+
 **We can track a state using `effect` rune, but as we know, it is a last resort, a better rune for this will be `inspect` rune.**
 
 ```js
 $inspect(userName);
 ```
+
 _Above will automatically track `userName` state and log it to the console whenever it is updated. This is very helpful in debugging._
+
+---
+
+## Component in Svelte
+
+---
+
+**Components can be created inside a file, in `lib/component` folder in the project.**
+
+_We can move our user input component in a `UserInput.svelte` file._
+
+_And we can call in `UserInput` component from `+page.svelte` file._
+
+_**How do we communicate between components, and root page?**_
+
+_This can be done using `props` rune._
+
+_Inside `UserInput` component`_
+
+```js
+let data = $props();
+$inspect(data);
+```
+
+_Inside `+page` component_
+
+```html
+<UserInput userName={"Shubhendu"} />
+```
+_Then userName will be passed to the `UserInput` component. And if there are some other things inside the `<UserInput> tag, then they will be passed as children._
+
+_And children can be rendered with_
+```js
+// typescript compatibility
+import type {Snippet} from "svelte";
+
+interface UserInputInterface {
+    children: Snippet;
+    userName: string;
+}
+
+let {userName, children, ...props}: UserInputInterface = $props();
+```
+
+```html
+<input type="text" bind:value="{userName}" />
+{@render children()}
+```
