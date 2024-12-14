@@ -138,3 +138,16 @@ instead of `PageServerLoad` type, we will use `PageLoad` type.**
 _Benefit is that suppose you have a link to the article on your landing page, when Svelte thinks that you are going to click on it (like hovering over it), it will already fetch the data by running the code on client side, and when you click on it, it will just show the data, without any loading time._
 
 ### Similar thing can be done for `+layout.svelte` file, but it will be `+layout.ts` and `+layout.server.ts` files.
+
+---
+
+## Building API Endpoint in SvelteKit
+
+---
+**Load functions, and `+page.server.ts` and `+page.ts` files are run before `+page.svelte` file is rendered, and the data is passed to it. But what if you want to delete some page for you, then you need a way to handler deletion. And you need a single endpoint, so you don't want to create whole backend API server, you can use SvelteKit to create the endpoint.**
+
+**For this, you can create a `server.ts` file in a route, usually, `api/delete-account` or something like that.**
+
+**We can also use this method to integrate some other services, and listen to them (business logic).**
+
+```ts
