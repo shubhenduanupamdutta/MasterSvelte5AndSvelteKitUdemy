@@ -77,3 +77,9 @@ _Basically, if you don't have any credentials you have to hide, then you might a
 ### Data Flow
 
 **Whenever a dynamic page is requested, then usually a `+page.server.ts` file is run, and it fetches the data from the server, and then passes it to the `+page.ts` file, which processes it if needed, and then passes it to the `+page.svelte` file, for user consumption.**
+
+### Example
+_Inside blog folder, `[articleId]` is the folder for dynamic routing. Inside that we create a `+page.server.ts` file._
+
+```ts
+// page.server.ts
