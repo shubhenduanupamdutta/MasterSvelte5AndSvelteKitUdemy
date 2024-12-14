@@ -174,3 +174,52 @@ _The body is set to have a font-family of "Open Sans" and sans-serif as a fallba
 _The typography is set for h1, h2, h3, h4, p, li, h5, and h6. The h1 and h2 have a font-family of "Anton" and sans-serif as a fallback. The h1 has a font-size of 100px, a line-height of 1.1, and a font-weight of bold. The h2 has a font-size of 60px, a line-height of 1.2, and a font-weight of bold. The h3 has a font-size of 22px, a line-height of 1.3, a font-family of "Anton" and sans-serif as a fallback, and a font-weight of normal. The h4 has a font-family of "Anton" and sans-serif as a fallback, a font-size of 20px, a line-height of 1.3, and a font-weight of normal. The p and li have a font-size of 20px and a line-height of 1.4. The h1, h2, h3, h4, h5, h6, and p have a margin of 0._
 
 _The utility classes are set for margin-top, margin-bottom, font-weight, font-style, text-align, and color._
+
+---
+
+## Another way of importing components
+
+---
+
+#### One way to do is default way, which is directly importing the component.
+
+```html
+<script>
+  import HeroSection from "$lib/components/HeroSection.svelte";
+</script>
+```
+
+#### Another way is to import using `index.js` file.
+
+**First you move or create and `index.js` file inside the `components` folder.**
+
+```js
+// components/index.js
+export { default as HeroSection } from "./HeroSection.svelte";
+```
+
+```html
+<!-- inside +page.svelte -->
+<
+<script>
+  import { HeroSection } from "$components";
+</script>
+```
+
+**This to work you have to add an alias in the `svelte.config.js` file.**
+
+```js
+import adapter from "@sveltejs/adapter-auto";
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    adapter: adapter(),
+    alias: {
+      $components: "src/lib/components",
+    },
+  },
+};
+
+export default config;
+```
