@@ -1,9 +1,9 @@
 <script lang="ts">
 	let { data } = $props();
-	let { blogPost, articleId } = data;
+	let { blogPost } = data;
 	$inspect(data);
 </script>
 
 <h1>Blog Article</h1>
-<h4>Article Id: {articleId}</h4>
-<p>{blogPost}</p>
+<h4>{blogPost.id}. {blogPost.title}</h4>
+<p>{blogPost.content}</p>
