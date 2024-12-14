@@ -1,13 +1,14 @@
 <script>
 	import chevronDown from '$assets/icons/chevron-down.svg';
+
+	let { faq } = $props();
 </script>
 
-<button class="container container-expanded">
+<button class="container">
 	<div class="question-and-answer">
-		<p class="question mb-s">What will I learn from this ebook?</p>
+		<p class="question mb-s">{faq.question}</p>
 		<p class="answer">
-			You will learn how to build a SvelteKit app from scratch. You will learn how to use
-			SvelteKit's file-based routing, API routes, and more.
+			{faq.answer}
 		</p>
 	</div>
 	<img src={chevronDown} alt="Chevron Down" />
@@ -37,22 +38,22 @@
 			opacity 0.3s ease-out;
 	}
 
-    button img {
-        width: 20px;
-        height: 20px;
-        transition: transform 0.3s linear;
-    }
+	button img {
+		width: 20px;
+		height: 20px;
+		transition: transform 0.3s linear;
+	}
 
-    .question {
-        font-weight: 600;
-    }
+	.question {
+		font-weight: 600;
+	}
 
-    .container-expanded img {
-        transform: rotate(180deg);
-    }
+	.container-expanded img {
+		transform: rotate(180deg);
+	}
 
-    .container-expanded .answer {
-        max-height: unset;
-        opacity: 1;
-    }
+	.container-expanded .answer {
+		max-height: unset;
+		opacity: 1;
+	}
 </style>

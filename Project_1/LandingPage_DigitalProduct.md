@@ -253,3 +253,32 @@ _What this will do is pass the `color` and `size` properties to the `Button` com
 ```html
 <button color="purple" size="large">Get Started</button>
 ```
+
+---
+
+## Shortcut to passing a property
+
+---
+
+### If you are passing a property to a component, and its value is same as the property name, you can use the shortcut.
+
+```svelte
+<!--faq component-->
+<script>
+    const faqs = [
+        {
+            question: "What is the product?",
+            answer: "The product is a digital e-book that helps you learn how to code."
+        },
+        {
+            question: "How do I get the product?",
+            answer: "You can download the product from our website after purchasing it."
+        }
+    ]
+</script>
+
+{#each faqs as faq}
+    <FaqItem {faq}/>
+{/each}
+```
+_This will pass the `faq` object to the `FaqItem` component, and the object will be available as a prop inside the component._
