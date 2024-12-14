@@ -2,7 +2,7 @@
 	import authorPic from '$assets/PossibleProfilePic.jpg';
 </script>
 
-<section class="author-section">
+<section class="landing-page-section">
 	<h2 class="mb-l">About the Author</h2>
 	<div class="author-container">
 		<div class="author-text">
@@ -25,14 +25,6 @@
 </section>
 
 <style>
-	.author-section {
-		padding: 80px 0;
-		margin-left: 9vw;
-		margin-right: 15vw;
-		max-width: 1150px;
-        height: 100vh;
-        overflow: hidden;
-	}
 
 	.author-container {
 		display: flex;

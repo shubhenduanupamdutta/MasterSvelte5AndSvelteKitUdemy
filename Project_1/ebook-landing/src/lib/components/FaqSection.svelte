@@ -3,7 +3,7 @@
 	import { Button, FaqItem } from '$components';
 </script>
 
-<section class="faq-section">
+<section class="landing-page-section">
 	<h2 class="mb-l">Frequently Asked Questions</h2>
 	<div class="faq-container">
 		<FaqItem />
