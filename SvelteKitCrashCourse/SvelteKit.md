@@ -79,50 +79,62 @@ _Basically, if you don't have any credentials you have to hide, then you might a
 **Whenever a dynamic page is requested, then usually a `+page.server.ts` file is run, and it fetches the data from the server, and then passes it to the `+page.ts` file, which processes it if needed, and then passes it to the `+page.svelte` file, for user consumption.**
 
 ### Example
+
 _Inside blog folder, `[articleId]` is the folder for dynamic routing. Inside that we create a `+page.server.ts` file._
 
 ```ts
 // page.server.ts
-import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { error } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ params }) => {
-	console.log(params);
+  console.log(params);
 
-	// What we usually do here is fetch the data from somewhere else
-	// const response = await fetch(`https://someapi.com/blog/${params.articleId}`);
+  // What we usually do here is fetch the data from somewhere else
+  // const response = await fetch(`https://someapi.com/blog/${params.articleId}`);
 
-	// Dummy data and response
+  // Dummy data and response
 
-	const blogArticles = [
-		{
-			id: 0,
-			title: 'First Blog Post',
-			content:
-				'This is the first blog post. It is a dummy blog post for the SvelteKit crash course This is the first blog post. It is a dummy blog post for the SvelteKit crash course. Let us say something about Isaac Newton. Sir Isaac Newton PRS was an English mathematician, physicist, astronomer, theologian, and author who is widely recognised as one of the greatest mathematicians and most influential scientists of all time and as a key figure in the scientific revolution.'
-		},
-		{
-			id: 1,
-			title: 'Second Blog Post',
-			content:
-				"This is the second blog post. It is a dummy blog post for the SvelteKit crash course. Let's say something about Mahatma Gandhi. Mahatma Gandhi was an Indian lawyer, anti-colonial nationalist, and political ethicist, who employed nonviolent resistance to lead the successful campaign for India's independence from British rule, and in turn inspired movements for civil rights and freedom across the world."
-		},
-		{
-			id: 2,
-			title: 'Third Blog Post',
-			content:
-				"This is the third blog post. It is a dummy blog post for the SvelteKit crash course. Let's say something about Albert Einstein. Albert Einstein was a German-born theoretical physicist, widely acknowledged to be one of the greatest physicists of all time. Einstein is known for developing the theory of relativity, but he also made important contributions to the development of the theory of quantum mechanics."
-		}
-	];
+  const blogArticles = [
+    {
+      id: 0,
+      title: "First Blog Post",
+      content:
+        "This is the first blog post. It is a dummy blog post for the SvelteKit crash course This is the first blog post. It is a dummy blog post for the SvelteKit crash course. Let us say something about Isaac Newton. Sir Isaac Newton PRS was an English mathematician, physicist, astronomer, theologian, and author who is widely recognised as one of the greatest mathematicians and most influential scientists of all time and as a key figure in the scientific revolution.",
+    },
+    {
+      id: 1,
+      title: "Second Blog Post",
+      content:
+        "This is the second blog post. It is a dummy blog post for the SvelteKit crash course. Let's say something about Mahatma Gandhi. Mahatma Gandhi was an Indian lawyer, anti-colonial nationalist, and political ethicist, who employed nonviolent resistance to lead the successful campaign for India's independence from British rule, and in turn inspired movements for civil rights and freedom across the world.",
+    },
+    {
+      id: 2,
+      title: "Third Blog Post",
+      content:
+        "This is the third blog post. It is a dummy blog post for the SvelteKit crash course. Let's say something about Albert Einstein. Albert Einstein was a German-born theoretical physicist, widely acknowledged to be one of the greatest physicists of all time. Einstein is known for developing the theory of relativity, but he also made important contributions to the development of the theory of quantum mechanics.",
+    },
+  ];
 
-	const foundArticle = blogArticles.find((article) => article.id === parseInt(params.articleId));
+  const foundArticle = blogArticles.find((article) => article.id === parseInt(params.articleId));
 
-	if (!foundArticle) {
-		throw error(404, 'Article not found');
-	}
+  if (!foundArticle) {
+    throw error(404, "Article not found");
+  }
 
-	return {
-		blogPost: foundArticle
-	};
+  return {
+    blogPost: foundArticle,
+  };
 };
 ```
+
+### Example - Using `+page.ts` file
+
+**We can use same code as above, but instead of `+page.server.ts` file, we can use `+page.ts` file.
+And inside `+page.ts` file, there will only be one change,
+instead of `PageServerLoad` type, we will use `PageLoad` type.**
+
+**What is the benefit?**
+_Benefit is that suppose you have a link to the article on your landing page, when Svelte thinks that you are going to click on it (like hovering over it), it will already fetch the data by running the code on client side, and when you click on it, it will just show the data, without any loading time._
+
+### Similar thing can be done for `+layout.svelte` file, but it will be `+layout.ts` and `+layout.server.ts` files.
