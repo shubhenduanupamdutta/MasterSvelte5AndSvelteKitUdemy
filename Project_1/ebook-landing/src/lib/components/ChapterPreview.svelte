@@ -1,16 +1,58 @@
+<script>
+	const chapters = [
+		{
+			number: 1,
+			title: 'Navigating the Spanish Bureaucracy',
+			strapline: 'Understanding Visa, Residency and Legal Essentials',
+			excerpt:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempore! Quidem, pariatur voluptatibus ex laborum ipsa blanditiis nulla nihil maiores iste deleniti suscipit, veniam a, vel tenetur. Quam, asperiores saepe! Lorem ipsum dolor sit amet consectetur, adipisicing elit. In soluta non architecto laboriosam exercitationem, illum, molestias quod corrupti enim nemo ipsum praesentium quasi ipsa obcaecati pariatur, amet possimus mollitia nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, facere asperiores. Quasi, officiis, quas veniam quisquam itaque, cum id provident ipsum eum beatae ullam error. Autem expedita ipsam odio vero? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ratione sapiente assumenda impedit necessitatibus architecto neque consequatur quaerat ipsa minus!'
+		},
+		{
+			number: 2,
+			title: 'Finding Your Dream Home in Spain',
+			strapline: 'From Coastal Villas to Urban Apartments: Where and How to Live',
+			excerpt:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempore! Quidem, pariatur voluptatibus ex laborum ipsa blanditiis nulla nihil maiores iste deleniti suscipit, veniam a, vel tenetur. Quam, asperiores saepe! Lorem ipsum dolor sit amet consectetur, adipisicing elit. In soluta non architecto laboriosam exercitationem, illum, molestias quod corrupti enim nemo ipsum praesentium quasi ipsa obcaecati pariatur, amet possimus mollitia nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, facere asperiores. Quasi, officiis, quas veniam quisquam itaque, cum id provident ipsum eum beatae ullam error. Autem expedita ipsam odio vero? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ratione sapiente assumenda impedit necessitatibus architecto neque consequatur quaerat ipsa minus!'
+		},
+		{
+			number: 3,
+			title: 'Mastering the Spanish Job Market',
+			strapline: 'Strategies for Employment and Freelancing in a New Culture',
+			excerpt:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempore! Quidem, pariatur voluptatibus ex laborum ipsa blanditiis nulla nihil maiores iste deleniti suscipit, veniam a, vel tenetur. Quam, asperiores saepe! Lorem ipsum dolor sit amet consectetur, adipisicing elit. In soluta non architecto laboriosam exercitationem, illum, molestias quod corrupti enim nemo ipsum praesentium quasi ipsa obcaecati pariatur, amet possimus mollitia nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, facere asperiores. Quasi, officiis, quas veniam quisquam itaque, cum id provident ipsum eum beatae ullam error. Autem expedita ipsam odio vero? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ratione sapiente assumenda impedit necessitatibus architecto neque consequatur quaerat ipsa minus!'
+		},
+		{
+			number: 4,
+			title: 'Embracing the Spanish Lifestyle',
+			strapline: 'Cultural Norms, Social Etiquette and Making New Connections',
+			excerpt:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempore! Quidem, pariatur voluptatibus ex laborum ipsa blanditiis nulla nihil maiores iste deleniti suscipit, veniam a, vel tenetur. Quam, asperiores saepe! Lorem ipsum dolor sit amet consectetur, adipisicing elit. In soluta non architecto laboriosam exercitationem, illum, molestias quod corrupti enim nemo ipsum praesentium quasi ipsa obcaecati pariatur, amet possimus mollitia nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, facere asperiores. Quasi, officiis, quas veniam quisquam itaque, cum id provident ipsum eum beatae ullam error. Autem expedita ipsam odio vero? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ratione sapiente assumenda impedit necessitatibus architecto neque consequatur quaerat ipsa minus!'
+		},
+		{
+			number: 5,
+			title: 'Budgeting and Finances in Spain',
+			strapline: 'Managing Costs, Taxes, and Banking in Your New Home',
+			excerpt:
+				'Success in Spain requires a solid understanding of the financial landscape. This chapter will guide you through the essentials of budgeting, taxes, and banking in Spain, so you can manage your money with confidence. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, tempore! Quidem, pariatur voluptatibus ex laborum ipsa blanditiis nulla nihil maiores iste deleniti suscipit, veniam a, vel tenetur. Quam, asperiores saepe! Lorem ipsum dolor sit amet consectetur, adipisicing elit. In soluta non architecto laboriosam exercitationem, illum, molestias quod corrupti enim nemo ipsum praesentium quasi ipsa obcaecati pariatur, amet possimus mollitia nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, facere asperiores. Quasi, officiis, quas veniam quisquam itaque, cum id provident ipsum eum beatae ullam error. Autem expedita ipsam odio vero? Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ratione sapiente assumenda impedit necessitatibus architecto neque consequatur quaerat ipsa minus!'
+		}
+	];
+</script>
+
 <section class="chapter-preview default-margin">
 	<h2 class="mb-l">What you're getting</h2>
 	<div class="chapter-container">
 		<ul>
-			<li>
-				<button
-					class="chapter-title selected-chapter-title"
-					aria-controls="chapter-info-1"
-					aria-expanded="true"
-				>
-					<h3>Chapter 1: Navigating the Spanish Bureaucracy</h3>
-				</button>
-			</li>
+			{#each chapters as chapter}
+				<li>
+					<button
+						class="chapter-title selected-chapter-title"
+						aria-controls={`chapter-info-${chapter.number}`}
+						aria-expanded="true"
+					>
+						<h3>Chapter {chapter.number}: {chapter.title}</h3>
+					</button>
+				</li>
+			{/each}
 		</ul>
 		<div class="chapter-info">
 			<h3 class="chapter-strapline italic mb-s">
