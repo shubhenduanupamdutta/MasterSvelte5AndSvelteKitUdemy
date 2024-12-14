@@ -223,3 +223,33 @@ const config = {
 
 export default config;
 ```
+
+---
+
+## Passing children and properties to components
+
+---
+
+### In calling component/root
+
+_Let's say you are calling a `Button` component from `HeroSection` component._
+
+```html
+<!-- Hero Section -->
+<button color="purple" size="large">Get Started</button>
+```
+
+```html
+<!-- Button Component -->
+<script>
+  let { children, ...props } = $props();
+</script>
+
+<button {...props}>{children}</button>
+```
+
+_What this will do is pass the `color` and `size` properties to the `Button` component, and the inside content will be passed as children. So in this case final output will be:_
+
+```html
+<button color="purple" size="large">Get Started</button>
+```
