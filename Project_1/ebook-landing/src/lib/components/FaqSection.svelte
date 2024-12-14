@@ -24,13 +24,27 @@
 			answer: `We offer a 30-day money-back guarantee on all purchases of the ebook. If you're not satisfied with the content or find that it doesn't meet your expectations, you can request a full refund within 30 days of purchase. Your satisfaction is our top priority.`
 		}
 	];
+
+	let questionCurrentlyExpanded = $state(-1);
+
+	function onclick(index) {
+		if (questionCurrentlyExpanded === index) {
+			questionCurrentlyExpanded = -1;
+		} else {
+			questionCurrentlyExpanded = index;
+		}
+	}
 </script>
 
 <section class="landing-page-section">
 	<h2 class="mb-l">Frequently Asked Questions</h2>
 	<div class="faq-container">
-		{#each faqs as faq}
-			<FaqItem {faq}/>
+		{#each faqs as faq, index}
+			<FaqItem
+				{faq}
+				isExpanded={index == questionCurrentlyExpanded}
+				onclick={() => onclick(index)}
+			/>
 		{/each}
 	</div>
 	<div class="additional-info mt-m">
@@ -60,5 +74,9 @@
 
 	.additional-info span {
 		text-decoration: underline;
+	}
+
+	section.landing-page-section {
+		height: fit-content;
 	}
 </style>
