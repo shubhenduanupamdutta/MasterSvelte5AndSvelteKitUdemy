@@ -13,8 +13,27 @@
 		<p class="mt-s">Any Other Question?</p>
 		<a href="https://www.instagram.com/shubhenduanupamdutta/">
 			<p>
-				Hit me up on Instagram <img src={InstagramIcon} class="insta-icon" alt="Instagram Icon" />
+				<img src={InstagramIcon} class="insta-icon" alt="Instagram Icon" />
+				<span>Hit me up on Instagram</span>
 			</p>
 		</a>
 	</div>
 </section>
+
+<style>
+	.additional-info {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: grey;
+	}
+
+	.insta-icon {
+		width: 14px;
+		height: 14px;
+	}
+
+	.additional-info span {
+		text-decoration: underline;
+	}
+</style>
