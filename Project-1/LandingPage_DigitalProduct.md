@@ -298,6 +298,9 @@ _This will pass the `faq` object to the `FaqItem` component, and the object will
 4. **Session ID being returned to our Svelte frontend.**
 5. **Frontend redirects to given session using the stripe frontend library. With the session id, we also tell the stripe where to forward user depending upon success/failure of the purchase.**
 6. **Stripe brings user back to our Svelte page depending on cancellation/failure or success, it should forward the user to different pages.**
+7. **Send purchase information from stripe to our backed. We have to create an endpoint to listen for any potential purchase information.**
+
+**When we get a purchase, we want to send out our digital product via email.**
 
 ### Installation Stripe Library
 
