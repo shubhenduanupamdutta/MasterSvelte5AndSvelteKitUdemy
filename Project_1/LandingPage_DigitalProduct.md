@@ -291,6 +291,7 @@ _This will pass the `faq` object to the `FaqItem` component, and the object will
 ---
 
 ### Steps
+
 1. **Fronted sends request to our backend with all info about the purchase.**
 2. **Backend creates a checkout session with stripe by using the secret stripe key with all the given purchase information, like price and quantity.**
 3. **Stripe creates session and gives us all necessary information, about the created session. Mainly we are interested in the session id.**
@@ -303,19 +304,46 @@ _This will pass the `faq` object to the `FaqItem` component, and the object will
 #### NOTE: As of 15th December 2024
 
 **For Backend - Node.js**
+
 ```bash
 npm install stripe
 ```
+
 _This will install the Stripe SDK for Node.js._
 
 **For Frontend - Stripe-js**
+
 ```bash
 npm install @stripe/stripe-js
 ```
+
 _This will install stripe-js for frontend._
 
-
 ### Starting Point - FrontEnd
+
 _Whole transaction will start when, the user clicks on the `Buy Now` button. For this we need to send some information to our backend. We have to send info to backend because we have to use our private key from stripe, which must not be used on frontend/client side._
 
 _In our specific case, we will not send anything to backend, since we only have one product, and so we don't need one, but we will work with this flow for learning purposes._
+
+---
+
+## Loading Environment Variables
+
+---
+
+**Loading environment variables in Svelte is quite easy and safe.**
+
+```svelte
+<script>
+    import { PUBLIC_STRIPE_KEY } from "$env/static/public";
+</script>
+```
+
+_This will load the public stripe key from the environment variables. And the available variables are only ones which has `PUBLIC` as prefix. All other are not loaded, and if accessed will throw an internal server error._
+
+```svelte
+<script>
+    import { SOME_OTHER_KEY } from "$env/static/private";
+</script>
+```
+_All other key can be imported using this syntax, but if used on frontend, will throw an error, saying that this cannot be accessed on frontend, can only be used on backend._
