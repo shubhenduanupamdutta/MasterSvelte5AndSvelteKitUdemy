@@ -281,4 +281,25 @@ _What this will do is pass the `color` and `size` properties to the `Button` com
     <FaqItem {faq}/>
 {/each}
 ```
+
 _This will pass the `faq` object to the `FaqItem` component, and the object will be available as a prop inside the component._
+
+---
+
+## Stripe Integration
+
+---
+
+### Steps
+1. **Fronted sends request to our backend with all info about the purchase.**
+2. **Backend creates a checkout session with stripe by using the secret stripe key with all the given purchase information, like price and quantity.**
+3. **Stripe creates session and gives us all necessary information, about the created session. Mainly we are interested in the session id.**
+4. **Session ID being returned to our Svelte frontend.**
+5. **Frontend redirects to given session using the stripe frontend library. With the session id, we also tell the stripe where to forward user depending upon success/failure of the purchase.**
+6. **Stripe brings user back to our Svelte page depending on cancellation/failure or success, it should forward the user to different pages.**
+
+### Starting Point - FrontEnd
+_Whole transaction will start when, the user clicks on the `Buy Now` button. For this we need to send some information to our backend. We have to send info to backend because we have to use our private key from stripe, which must not be used on frontend/client side._
+
+_In our specific case, we will not send anything to backend, since we only have one product, and so we don't need one, but we will work with this flow for learning purposes._
+```html
